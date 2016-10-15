@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="com.gdg.firebase.iceteachat.AboutActivity"
+android:background="#E3F2FD"
+android:orientation="vertical">
+
+
+<ImageView
+    android:layout_width="160dp"
+    android:layout_height="160dp"
+    android:layout_margin="16dp"
+    android:layout_gravity="center_horizontal"
+    android:src="@drawable/person"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="8dp"
+    android:textSize="28sp"
+    android:textColor="#283593"
+    android:text="ĐOÀN HIẾU TÂM"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="14dp"
+    android:textSize="20sp"
+    android:text="ĐH KHOA HỌC TỰ NHIÊN TPHCM"/>
+
+<View
+    android:layout_width="fill_parent"
+    android:layout_marginBottom="20dp"
+    android:layout_height="1dp"
+    android:id="@+id/esparator"
+    android:visibility="visible"
+    android:background="@android:color/black"/>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="48dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:src="@drawable/fb_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="center"
+        android:text="facebook.com/hieutam22"/>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="48dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:src="@drawable/blogger_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="center"
+        android:text="iceteaviet.blogspot.com"/>
+</LinearLayout>
+</LinearLayout>
+
