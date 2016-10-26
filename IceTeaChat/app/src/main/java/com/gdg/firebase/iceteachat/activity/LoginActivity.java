@@ -1,7 +1,6 @@
-package com.gdg.firebase.iceteachat;
+package com.gdg.firebase.iceteachat.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +8,11 @@ import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.firebase.ui.auth.core.AuthProviderType;
 import com.firebase.ui.auth.core.FirebaseLoginBaseActivity;
 import com.firebase.ui.auth.core.FirebaseLoginError;
-import com.gdg.firebase.iceteachat.Helper.ReferenceURL;
-import com.gdg.firebase.iceteachat.Model.UserChat;
+import com.gdg.firebase.iceteachat.helper.ReferenceURL;
+import com.gdg.firebase.iceteachat.R;
 
 
 //TODO: this class use to login w email, facebook
@@ -68,6 +66,7 @@ public class LoginActivity extends FirebaseLoginBaseActivity {
                 Toast.makeText(getBaseContext(),"Đang đăng nhập ẩn danh...",Toast.LENGTH_SHORT);
                 Intent navToMainPage= new Intent(getBaseContext(), MainActivity.class);
                 startActivity(navToMainPage);
+                finish();
             }
         });
 
@@ -112,8 +111,7 @@ public class LoginActivity extends FirebaseLoginBaseActivity {
         //TODO: Handle successful login
         Intent navToMainPage= new Intent(getBaseContext(), MainActivity.class);
         startActivity(navToMainPage);
-
-        this.finish();
+        finish();
     }
 
     @Override

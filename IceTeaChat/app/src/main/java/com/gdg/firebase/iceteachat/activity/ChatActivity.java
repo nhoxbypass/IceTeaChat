@@ -1,8 +1,10 @@
-package com.gdg.firebase.iceteachat;
+package com.gdg.firebase.iceteachat.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -11,8 +13,13 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
-import com.gdg.firebase.iceteachat.Helper.ReferenceURL;
-import com.gdg.firebase.iceteachat.Model.ChatMessage;
+import com.firebase.ui.FirebaseRecyclerAdapter;
+import com.gdg.firebase.iceteachat.helper.ReferenceURL;
+import com.gdg.firebase.iceteachat.model.ChatMessage;
+import com.gdg.firebase.iceteachat.R;
+import com.gdg.firebase.iceteachat.ui.chat.PrivateChatAdapter;
+import com.gdg.firebase.iceteachat.ui.chat.PublicChatAdapter;
+import com.gdg.firebase.iceteachat.ui.chat.PublicItemViewHolder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +30,19 @@ import java.util.Random;
 //TODO: Receive the Firebase Reference link of the prev Activity
 public class ChatActivity extends Activity{
 
+    public static final int PUBLIC_CHAT = 0;
+    public static final int PRIVATE_CHAT = 1;
+
     //Declare variables
     private Firebase mFirebaseRef;
-    FirebaseListAdapter<ChatMessage> mListAdapter;
+    FirebaseRecyclerAdapter<ChatMessage,RecyclerView.ViewHolder> mFirebaseRecyclerAdapter;
     String senderName;
     String refLink;
+    RecyclerView recyclerView;
+    EditText textEdit;
+    LinearLayoutManager mLinearLayoutManager;
+    int type;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +50,15 @@ public class ChatActivity extends Activity{
         setContentView(R.layout.activity_chat);
 
         //Get information from user, and link to the recipient
-        senderName = getIntent().getStringExtra("senderName");
-        refLink = getIntent().getStringExtra("refLink");
+        Intent intent = getIntent();
+        senderName = intent.getStringExtra(MainActivity.KEY_SENDER_NAME);
+        refLink = intent.getStringExtra(MainActivity.KEY_REF_LINK);
+        type = intent.getIntExtra(MainActivity.KEY_CHAT_TYPE, PUBLIC_CHAT);
 
         //Set view
-        final EditText textEdit = (EditText)this.findViewById(R.id.text_edit);
+        textEdit = (EditText)this.findViewById(R.id.text_edit);
         ImageButton sendButton = (ImageButton)this.findViewById(R.id.send_button);
-        final ListView listView = (ListView) this.findViewById(android.R.id.list);
+        recyclerView = (RecyclerView) this.findViewById(R.id.rv_chat);
 
         //Set firebase Reference
         mFirebaseRef = new Firebase(refLink);
@@ -89,16 +106,21 @@ public class ChatActivity extends Activity{
             }
         });
 
-        //Message Adapter, can be replace with recyclerView
-        mListAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                android.R.layout.two_line_list_item, mFirebaseRef) {
-            @Override
-            protected void populateView(View v, ChatMessage model, int position) {
-                ((TextView)v.findViewById(android.R.id.text1)).setText(model.getSender());
-                ((TextView)v.findViewById(android.R.id.text2)).setText(model.getText());
-            }
-        };
-        listView.setAdapter(mListAdapter);
+
+        //Set adapter
+        if (type == PUBLIC_CHAT)
+        {
+            mFirebaseRecyclerAdapter = new PublicChatAdapter(ChatMessage.class, mFirebaseRef);
+        }
+        else if (type == PRIVATE_CHAT)
+        {
+            mFirebaseRecyclerAdapter = new PrivateChatAdapter(senderName, ChatMessage.class, mFirebaseRef);
+        }
+
+        mLinearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        recyclerView.setAdapter(mFirebaseRecyclerAdapter);
+
 
     }
 
@@ -107,7 +129,7 @@ public class ChatActivity extends Activity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mListAdapter.cleanup();
+        mFirebaseRecyclerAdapter.cleanup();
     }
 
 

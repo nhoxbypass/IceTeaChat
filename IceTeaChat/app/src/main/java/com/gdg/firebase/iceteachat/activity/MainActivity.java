@@ -1,4 +1,4 @@
-package com.gdg.firebase.iceteachat;
+package com.gdg.firebase.iceteachat.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,23 +14,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.gdg.firebase.iceteachat.Helper.ReferenceURL;
-import com.gdg.firebase.iceteachat.Model.UserChat;
+import com.gdg.firebase.iceteachat.helper.ReferenceURL;
+import com.gdg.firebase.iceteachat.model.UserChat;
+import com.gdg.firebase.iceteachat.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.jar.Attributes;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static final String KEY_SENDER_NAME = "senderName";
+    public static final String KEY_REF_LINK = "refLink";
+    public static final String KEY_CHAT_TYPE = "type";
     //Declare variables
     Button publicChat;
     Firebase mFireBaseRef;
@@ -116,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent navToPublicChat = new Intent(getBaseContext(), ChatActivity.class);
-                navToPublicChat.putExtra("refLink", ReferenceURL.FIREBASE_APP_URL + ReferenceURL.CHILD_PUBLIC_CHAT);
-                navToPublicChat.putExtra("senderName", currUserChat.getName());
+                navToPublicChat.putExtra(KEY_REF_LINK, ReferenceURL.FIREBASE_APP_URL + ReferenceURL.CHILD_PUBLIC_CHAT);
+                navToPublicChat.putExtra(KEY_SENDER_NAME, currUserChat.getName());
+                navToPublicChat.putExtra(KEY_CHAT_TYPE, ChatActivity.PUBLIC_CHAT);
                 startActivity(navToPublicChat);
             }
         });
@@ -127,13 +129,12 @@ public class MainActivity extends AppCompatActivity {
     private void setAuthenticatedUser(AuthData authData) {
         //AuthData auth = mFireBaseRef.getAuth();
         if (authData != null) {
-            currUserChat = new UserChat("Registered user", authData.getProviderData().get(ReferenceURL.EMAIL_PATH).toString(), "password");
+            currUserChat = new UserChat("Registered user", authData.getProviderData().get(ReferenceURL.EMAIL_PATH).toString(), "password", authData.getProviderData().get(ReferenceURL.PHOTO_URL).toString(),authData.getUid());
             mCurrUserUid = authData.getUid();
-            currUserChat.setUid(mCurrUserUid);
         }
         else {
             Random r = new Random();
-            currUserChat = new UserChat("Anonymous" + r.nextInt(1000) + 123, "ano@gmail.com", "123");
+            currUserChat = new UserChat("Anonymous" + r.nextInt(1000) + 123, "ano@gmail.com", "123", "http://www.caprisunandomd.com/wp-content/uploads/2015/09/no-avatar.jpg","null");
             mCurrUserUid = "null";
         }
 
@@ -193,8 +194,9 @@ public class MainActivity extends AppCompatActivity {
                                 String path = currUserChat.getChatRef(mail);
 
                                 Intent navToPrivateChat = new Intent(getBaseContext(), ChatActivity.class);
-                                navToPrivateChat.putExtra("refLink", ReferenceURL.FIREBASE_APP_URL + ReferenceURL.CHILD_PRIVATE_CHAT + "/" + path);
-                                navToPrivateChat.putExtra("senderName", currUserChat.getName());
+                                navToPrivateChat.putExtra(KEY_REF_LINK, ReferenceURL.FIREBASE_APP_URL + ReferenceURL.CHILD_PRIVATE_CHAT + "/" + path);
+                                navToPrivateChat.putExtra(KEY_SENDER_NAME, currUserChat.getName());
+                                navToPrivateChat.putExtra(KEY_CHAT_TYPE, ChatActivity.PRIVATE_CHAT);
                                 startActivity(navToPrivateChat);
 
                             }
@@ -274,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
             Intent navBackToLogin = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(navBackToLogin);
 
-            //this.finish();
+            finish();
             return true;
         }
 

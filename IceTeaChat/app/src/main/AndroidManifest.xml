@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,12 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.AboutActivity"></activity>
 
         <!-- Facebook Configuration -->
         <activity

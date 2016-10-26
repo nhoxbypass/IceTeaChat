@@ -1,4 +1,4 @@
-package com.gdg.firebase.iceteachat;
+package com.gdg.firebase.iceteachat.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +11,9 @@ import android.widget.Toast;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.gdg.firebase.iceteachat.Helper.ReferenceURL;
-import com.gdg.firebase.iceteachat.Model.UserChat;
+import com.gdg.firebase.iceteachat.helper.ReferenceURL;
+import com.gdg.firebase.iceteachat.model.UserChat;
+import com.gdg.firebase.iceteachat.R;
 
 import java.util.Map;
 
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(getBaseContext(),"Đang tạo tài khoản...",Toast.LENGTH_SHORT);
-                userChat = new UserChat(nameInput.getText().toString(), emailInput.getText().toString(), passwordInput.getText().toString());
+                userChat = new UserChat(nameInput.getText().toString(), emailInput.getText().toString(), passwordInput.getText().toString(), "http://www.caprisunandomd.com/wp-content/uploads/2015/09/no-avatar.jpg", "null");
 
                 mFireBaseRef.createUser(userChat.getEmail(), userChat.getPassword(), new Firebase.ValueResultHandler<Map<String, Object>>() {
                     @Override
@@ -75,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 //userChat.loggedIn();
                                 Intent navToMainPage = new Intent(getBaseContext(), MainActivity.class);
                                 startActivity(navToMainPage);
+                                finish();
                             }
 
                             @Override

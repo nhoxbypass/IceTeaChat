@@ -1,8 +1,8 @@
-package com.gdg.firebase.iceteachat.Model;
+package com.gdg.firebase.iceteachat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.Firebase;
-import com.gdg.firebase.iceteachat.Helper.ReferenceURL;
+import com.gdg.firebase.iceteachat.helper.ReferenceURL;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +17,7 @@ public class UserChat{
     private String email;
     private String password;
     private String uid;
+    private String photoUrl;
     // boolean isLogged;
 
     public UserChat()
@@ -25,12 +26,13 @@ public class UserChat{
         //isLogged = false;
     }
 
-    public UserChat(String name, String email, String password)
+    public UserChat(String name, String email, String password, String photoUrl ,String uid)
     {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.uid = "";
+        this.uid = uid;
+        this.photoUrl = photoUrl;
         //isLogged = false;
 
     }
@@ -131,6 +133,14 @@ public class UserChat{
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
    /* public boolean isLoggedIn()
