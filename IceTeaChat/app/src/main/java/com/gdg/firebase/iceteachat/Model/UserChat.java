@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.Firebase;
 import com.gdg.firebase.iceteachat.helper.ReferenceURL;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,12 +13,13 @@ import java.util.Map;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserChat{
+public class UserChat implements Serializable{
     private String name;
     private String email;
     private String password;
     private String uid;
     private String photoUrl;
+    private String connection;
     // boolean isLogged;
 
     public UserChat()
@@ -26,13 +28,14 @@ public class UserChat{
         //isLogged = false;
     }
 
-    public UserChat(String name, String email, String password, String photoUrl ,String uid)
+    public UserChat(String name, String email, String password, String photoUrl, String connection,String uid)
     {
         this.name = name;
         this.email = email;
         this.password = password;
         this.uid = uid;
         this.photoUrl = photoUrl;
+        this.connection = connection;
         //isLogged = false;
 
     }
@@ -48,6 +51,8 @@ public class UserChat{
         values.put("name",this.name);
         values.put("email", this.email);
         values.put("password", this.password);
+        values.put("photoUrl",this.photoUrl);
+        values.put("connection", this.connection);
 
         //Push to firebase
         mFireBaseRef.child(this.uid).setValue(values);
@@ -141,6 +146,10 @@ public class UserChat{
 
     public String getPhotoUrl() {
         return photoUrl;
+    }
+
+    public String getConnection(){
+        return connection;
     }
 
    /* public boolean isLoggedIn()

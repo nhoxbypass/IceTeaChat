@@ -18,6 +18,10 @@ import com.gdg.firebase.iceteachat.R;
 //TODO: this class use to login w email, facebook
 public class LoginActivity extends FirebaseLoginBaseActivity {
 
+    public static final String KEY_LOGIN_TYPE  = "login_type";
+    public static final int LOGIN_NORMAL = 0;
+    public static final int LOGIN_ANNONYMOUS = 1;
+
     //Declare variables
     Button loginButton;
     Button registerButton;
@@ -65,6 +69,7 @@ public class LoginActivity extends FirebaseLoginBaseActivity {
             public void onClick(View v) {
                 Toast.makeText(getBaseContext(),"Đang đăng nhập ẩn danh...",Toast.LENGTH_SHORT);
                 Intent navToMainPage= new Intent(getBaseContext(), MainActivity.class);
+                navToMainPage.putExtra(KEY_LOGIN_TYPE, LOGIN_ANNONYMOUS);
                 startActivity(navToMainPage);
                 finish();
             }
@@ -110,6 +115,7 @@ public class LoginActivity extends FirebaseLoginBaseActivity {
     public void onFirebaseLoggedIn(AuthData authData) {
         //TODO: Handle successful login
         Intent navToMainPage= new Intent(getBaseContext(), MainActivity.class);
+        navToMainPage.putExtra(KEY_LOGIN_TYPE, LOGIN_NORMAL);
         startActivity(navToMainPage);
         finish();
     }

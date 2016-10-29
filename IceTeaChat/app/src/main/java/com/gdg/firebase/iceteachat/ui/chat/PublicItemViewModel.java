@@ -2,7 +2,10 @@ package com.gdg.firebase.iceteachat.ui.chat;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.gdg.firebase.iceteachat.R;
 import com.gdg.firebase.iceteachat.model.ChatMessage;
 import com.gdg.firebase.iceteachat.ui.base.BaseViewModel;
 
@@ -23,6 +26,12 @@ public class PublicItemViewModel extends BaseViewModel {
     public void bind(ChatMessage message) {
         name.set(message.getSender());
         text.set(message.getText());
-        avatar.set(message.getPhotoUrl());
+    }
+
+    public void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_account_circle_black_36dp)
+                .into(view);
     }
 }

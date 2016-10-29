@@ -38,24 +38,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập tên..."
+                android:inputType="textCapWords"
                 android:id="@+id/name_input"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập email..."
+                android:inputType="textEmailAddress"
                 android:id="@+id/email_input"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:hint="Nhập mật khẩu..."
                 android:id="@+id/pass_input"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#9FA8DA"
+                android:layout_marginTop="8dp"
+                android:textColor="#F5F5F5"
+                android:background="@drawable/button"
                 android:text="ĐĂNG KÝ"
                 android:id="@+id/reg_submit_button"/>
 
@@ -66,6 +71,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:id="@+id/about_button"
             android:layout_alignParentBottom="true"
             android:text="ABOUT"

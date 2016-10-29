@@ -59,8 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(getBaseContext(),"Đang tạo tài khoản...",Toast.LENGTH_SHORT);
-                userChat = new UserChat(nameInput.getText().toString(), emailInput.getText().toString(), passwordInput.getText().toString(), "http://www.caprisunandomd.com/wp-content/uploads/2015/09/no-avatar.jpg", "null");
-
+                userChat = new UserChat(nameInput.getText().toString(), emailInput.getText().toString(), passwordInput.getText().toString(), "http://www.caprisunandomd.com/wp-content/uploads/2015/09/no-avatar.jpg",ReferenceURL.KEY_OFFLINE,"uid");
                 mFireBaseRef.createUser(userChat.getEmail(), userChat.getPassword(), new Firebase.ValueResultHandler<Map<String, Object>>() {
                     @Override
                     public void onSuccess(Map<String, Object> result) {

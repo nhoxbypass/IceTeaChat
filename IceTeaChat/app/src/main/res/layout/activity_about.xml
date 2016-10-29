@@ -32,7 +32,7 @@ android:orientation="vertical">
     android:layout_gravity="center_horizontal"
     android:layout_margin="14dp"
     android:textSize="20sp"
-    android:text="ĐH KHOA HỌC TỰ NHIÊN TPHCM"/>
+    android:text="HCM UNIVERSITY OF SCIENCE"/>
 
 <View
     android:layout_width="fill_parent"

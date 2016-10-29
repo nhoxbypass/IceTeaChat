@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="8dp"
     android:orientation="vertical"
-    android:background="#1E88E5"
+    android:background="@color/colorPrimary"
     android:gravity="center_horizontal"
     tools:context=".activity.LoginActivity">
 
@@ -41,13 +41,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ĐĂNG NHẬP"
-                    android:background="#9FA8DA"
+                    android:textColor="#F5F5F5"
+                    android:background="@drawable/button"
                     android:id="@+id/login_button" />
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="#9FA8DA"
+                    android:background="@drawable/button"
+                    android:textColor="#F5F5F5"
                     android:id="@+id/reg_button"
                     android:text="ĐĂNG KÝ"/>
 
@@ -57,7 +59,7 @@
                     android:layout_height="1dp"
                     android:id="@+id/esparator"
                     android:visibility="visible"
-                    android:background="@android:color/black"/>
+                    android:background="#F5F5F5"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,7 +73,8 @@
                         android:textAllCaps="false"
                         android:layout_weight="1"
                         android:id="@+id/ano_try_button"
-                        android:text="Try as anonymous"
+                        android:textColor="#F5F5F5"
+                        android:text="Try as annonymous"
                         android:background="@null"
                         />
                     <Button
@@ -79,6 +82,7 @@
                         android:layout_height="wrap_content"
                         android:textAllCaps="false"
                         android:layout_weight="1"
+                        android:textColor="#F5F5F5"
                         android:background="@null"
                         android:text="Forgot password?"/>
 
@@ -90,8 +94,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="#C5CAE9"
+                android:background="@drawable/button"
                 android:id="@+id/about_button"
+                android:textColor="#F5F5F5"
                 android:text="ABOUT"
                 />
 

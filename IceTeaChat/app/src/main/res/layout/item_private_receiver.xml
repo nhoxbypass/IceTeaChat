@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/receiver_message"
         android:layout_width="wrap_content"
@@ -14,8 +15,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="2dp"
+        android:elevation="6dp"
         android:textColor="#727272"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:background="@drawable/recipient_rounded_corners"/>
 
 </RelativeLayout>

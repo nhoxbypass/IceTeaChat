@@ -20,6 +20,7 @@ import com.gdg.firebase.iceteachat.R;
 import com.gdg.firebase.iceteachat.ui.chat.PrivateChatAdapter;
 import com.gdg.firebase.iceteachat.ui.chat.PublicChatAdapter;
 import com.gdg.firebase.iceteachat.ui.chat.PublicItemViewHolder;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,7 @@ public class ChatActivity extends Activity{
 
     //Declare variables
     private Firebase mFirebaseRef;
+
     FirebaseRecyclerAdapter<ChatMessage,RecyclerView.ViewHolder> mFirebaseRecyclerAdapter;
     String senderName;
     String refLink;
