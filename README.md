@@ -2,8 +2,8 @@
 
 **IceTea Chat** is an awesome android app that allows a user to register and chat with each other and chat in public room chat with everyone
 
-Time spent: **16** hours spent in total
-Date created: 
+Time spent: **16** hours spent in total.
+Date created: 6/2015
 
 ## User Stories
 
@@ -25,11 +25,11 @@ Here's a walkthrough of implemented user stories:
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+There are still some bugs in my application due to Google update new Firebase. The legacy firebase doesn't have more supports.
 
 ## Open-source libraries used
 
-- [Firebase](https://firebase.google.com/) - The tools and infrastructure you need to build better apps and grow successful businesses
+- [Legacy Firebase](https://www.firebase.com/) - The tools and infrastructure you need to build better apps and grow successful businesses
 - [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling
 - [Circle ImageView](https://github.com/hdodenhof/CircleImageView) - A circular ImageView for Android
 
